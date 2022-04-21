@@ -34,6 +34,7 @@ public class UserRepository {
       } catch (Exception e) {
       e.printStackTrace();
         }
+    return null;
     }
 
   public void setConnection() {

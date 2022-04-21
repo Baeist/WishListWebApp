@@ -6,6 +6,7 @@ public class User {
   private String username;
   private String password;
   private List<WishList> listOfWishLists;
+  private int userID;
 
   public User(String username, String password) {
     this.username = username;
@@ -34,5 +35,9 @@ public class User {
         "username='" + username + '\'' +
         ", password='" + password + '\'' +
         '}';
+  }
+
+  public int getUserID() {
+    return userID;
   }
 }

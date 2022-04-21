@@ -2,6 +2,7 @@ package com.example.wishlistwebapplication.repository;
 
 import com.example.wishlistwebapplication.model.User;
 import com.example.wishlistwebapplication.model.Wish;
+import com.example.wishlistwebapplication.utilities.ConnectionManager;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -10,10 +11,6 @@ import java.util.List;
 
 @Repository
 public class WishListRepository {
-
-  private String DBURL = "jdbc:mysql://localhost:3306/wishlist";
-  private String user = "root";
-  private String passWord = "2702";
 
   private Connection connection;
   /*
@@ -24,7 +21,7 @@ public class WishListRepository {
 
   public void setConnection() {
     try {
-      connection = DriverManager.getConnection(DBURL, user, passWord);
+      connection = ConnectionManager.getConnection();
 
     } catch (Exception e) {
       System.out.println("Did not connect to database" + e);

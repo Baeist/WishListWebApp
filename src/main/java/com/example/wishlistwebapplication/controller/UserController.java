@@ -49,13 +49,13 @@ public class UserController {
   }
 
   @GetMapping("/findUser")
-  public String findUser() {
+  public String findUserWishlist() {
     return "findUser";
   }
 
   @PostMapping("/findUser")
-  public String findUser(@RequestParam("username") String username) {
-    userService.findUser(username);
+  public String findUserWishlist(@RequestParam("username") String username) {
+    userService.findUserWishlist(username);
     return "redirect:/findUser";
   }
 }

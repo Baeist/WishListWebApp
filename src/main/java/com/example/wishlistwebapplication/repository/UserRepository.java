@@ -2,7 +2,6 @@ package com.example.wishlistwebapplication.repository;
 
 import com.example.wishlistwebapplication.model.User;
 import com.example.wishlistwebapplication.utilities.ConnectionManager;
-import com.example.wishlistwebapplication.utilities.ConnectionManager;
 import org.springframework.stereotype.Repository;
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,10 +24,11 @@ public class UserRepository {
       }
     }
 
-    public User findUser(String username) {
+    public User findUserWishlist(String username) {
     try {
       var connection = ConnectionManager.getConnection();
-      final String SQL_QUERY = "SELECT username FROM users WHERE username = ?";
+      final String SQL_QUERY = "SELECT wishes.wishlist_id, item_name, price_dkk, url, description FROM users INNER JOIN wishlist" +
+          " ON users.userID=wishlist.UserID INNER JOIN wishes ON wishlist.wishlist_id=wishes.wishlist_id WHERE users.userID = ?";
       PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
       ps.setString(1, username);
       ps.executeUpdate();

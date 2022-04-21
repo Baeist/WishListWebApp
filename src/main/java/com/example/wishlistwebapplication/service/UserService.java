@@ -16,8 +16,8 @@ public class UserService {
     userRepository.createUser(user);
   }
 
-  public void findUser(String username) {
-    userRepository.findUser(username);
+  public void findUserWishlist(String username) {
+    userRepository.findUserWishlist(username);
   }
 
 

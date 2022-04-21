@@ -40,6 +40,7 @@ public class WishListController {
         return "userWishlist";
     }
 
+
     // todo Skal slette bruges kun til test
     public ArrayList<WishList> testWish() {
         ArrayList<WishList> list = new ArrayList<>();

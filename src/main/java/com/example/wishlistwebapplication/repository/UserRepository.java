@@ -1,7 +1,8 @@
 package com.example.wishlistwebapplication.repository;
 
 import com.example.wishlistwebapplication.model.User;
-import com.example.wishlistwebapplication.util.ConnectionManager;
+import com.example.wishlistwebapplication.utilities.ConnectionManager;
+import com.example.wishlistwebapplication.utilities.ConnectionManager;
 import org.springframework.stereotype.Repository;
 import java.sql.*;
 import java.util.ArrayList;

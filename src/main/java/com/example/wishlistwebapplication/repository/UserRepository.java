@@ -23,6 +23,18 @@ public class UserRepository {
       }
     }
 
+    public User findUser(String username) {
+    try {
+      var connection = ConnectionManager.getConnection();
+      final String SQL_QUERY = "SELECT username FROM users WHERE username = ?";
+      PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+      ps.setString(1, username);
+      ps.executeUpdate();
+      } catch (Exception e) {
+      e.printStackTrace();
+        }
+    }
+
   public void setConnection() {
     try {
       connection = ConnectionManager.getConnection();

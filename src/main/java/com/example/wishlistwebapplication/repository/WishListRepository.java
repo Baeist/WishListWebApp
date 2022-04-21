@@ -16,10 +16,11 @@ public class WishListRepository {
   private String passWord = "2702";
 
   private Connection connection;
-
+  /*
   public WishListRepository() {
     setConnection();
   }
+
 
   public void setConnection() {
     try {
@@ -59,6 +60,7 @@ public class WishListRepository {
     }
     return wishList;
   }
+
   public ArrayList<Wish> getWishesForUser(User user) {
     ArrayList<Wish> wishList = new ArrayList<>();
 
@@ -67,7 +69,7 @@ public class WishListRepository {
 
       final String SQL_QUERY = "SELECT * FROM wishes WHERE userID = ?";
       PreparedStatement statement = connection.prepareStatement(SQL_QUERY);
-      statement.setInt(1,user.getUserID());
+      statement.setInt(1,user.g());
       ResultSet rs = statement.executeQuery();
 
 
@@ -108,8 +110,7 @@ public class WishListRepository {
       System.out.println("failed to update wishlist");
       return false;
     }
-
   }
 
-
+   */
 }

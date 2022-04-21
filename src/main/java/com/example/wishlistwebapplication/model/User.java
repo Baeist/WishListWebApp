@@ -1,8 +1,11 @@
 package com.example.wishlistwebapplication.model;
 
+import java.util.List;
+
 public class User {
   private String username;
   private String password;
+  private List<WishList> listOfWishLists;
 
   public User(String username, String password) {
     this.username = username;

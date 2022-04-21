@@ -15,4 +15,8 @@ public class UserService {
   public void createUser(User user) {
     userRepository.createUser(user);
   }
+
+  public void findUser(String username) {
+    userRepository.findUser(username);
+  }
 }

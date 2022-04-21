@@ -22,13 +22,30 @@ public class UserController {
   }
 
   @PostMapping("/createUser")
-  public void sendNewUserInfo(@ModelAttribute User user) {
+  public void sendNewUserInfo(@RequestParam("username") String username, @RequestParam("password") String password) {
+    User user = new User();
+    user.setUsername(username);
+    user.setPassword(password);
+
     userService.createUser(user);
+
   }
 
   @GetMapping("/login")
   public String login() {
     return "login";
+  }
+
+  @PostMapping("/login")
+  public String succesfulLogIn(@RequestParam("username") String username, @RequestParam("password") String password){
+    boolean checkPassword = false;
+    checkPassword = userService.checkUserPasswordForLogIn(username, password);
+
+    if(checkPassword)
+      return "redirect:/"; // skal ændres til korrekt url, returnere til landing for testing
+
+    return "/login"; // skal have fejl til bruger måske?
+
   }
 
   @GetMapping("/findUser")

@@ -8,7 +8,15 @@ public class User {
   private List<WishList> listOfWishLists;
   private int userID;
 
+  public User(){}
+
   public User(String username, String password) {
+    this.username = username;
+    this.password = password;
+  }
+
+  public User(int userID, String username, String password) {
+    this.userID = userID;
     this.username = username;
     this.password = password;
   }

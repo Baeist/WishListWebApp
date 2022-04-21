@@ -14,10 +14,11 @@ public class UserRepository {
   public void createUser(User user) {
       try {
         var connection = ConnectionManager.getConnection();
-        final String INSERT_SQL = "INSERT INTO users(username, password) VALUES (?, ?)";
+        String INSERT_SQL = "INSERT INTO users(userID, username, password) VALUES (null, ?, ?)"; // INSERT INTO product(name, price) VALUES (?, ?)
         PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
         ps.setString(1, user.getUsername());
         ps.setString(2, user.getPassword());
+        System.out.println(user.getPassword() + user.getUsername() + user.getUserID());
         ps.executeUpdate();
       } catch (Exception e) {
         e.printStackTrace();
@@ -36,6 +37,30 @@ public class UserRepository {
         }
     return null;
     }
+    // gets a user without their wishlist but includes id, name and password
+  public User haveUserNameGetUserInfo(String username) {
+    User user = new User();
+    try {
+      var connection = ConnectionManager.getConnection();
+      Statement statement = connection.createStatement();
+      final String SQL_QUERY = "SELECT * FROM users WHERE username = ?";
+      PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+      ps.setString(1, username);
+      ResultSet rs = ps.executeQuery();
+
+      while (rs.next()) {
+        int userID = rs.getInt(1);
+        username = rs.getString(2);
+        String password = rs.getString(3);
+        user = new User(userID, username, password);
+      }
+
+      return user;
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
 
   public void setConnection() {
     try {

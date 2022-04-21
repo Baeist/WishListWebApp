@@ -39,7 +39,7 @@ public class UserRepository {
     }
     // gets a user without their wishlist but includes id, name and password
   public User haveUserNameGetUserInfo(String username) {
-    User user = new User();
+
     try {
       var connection = ConnectionManager.getConnection();
       Statement statement = connection.createStatement();
@@ -52,10 +52,10 @@ public class UserRepository {
         int userID = rs.getInt(1);
         username = rs.getString(2);
         String password = rs.getString(3);
-        user = new User(userID, username, password);
+        User user = new User(userID, username, password);
+        return user;
       }
 
-      return user;
     } catch (Exception e) {
       e.printStackTrace();
     }

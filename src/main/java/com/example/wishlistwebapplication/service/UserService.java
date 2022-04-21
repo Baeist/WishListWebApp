@@ -29,6 +29,9 @@ public class UserService {
 
     User user = userRepository.haveUserNameGetUserInfo(userName);
 
+    if(user == null)
+      return false;
+
     if(password.equals(user.getPassword()))
       return true;
 

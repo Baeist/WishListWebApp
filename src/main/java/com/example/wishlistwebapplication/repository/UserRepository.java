@@ -43,7 +43,7 @@ public class UserRepository {
       while (rs.next()) {
         int userID = rs.getInt(1);
         String username = rs.getString(2);
-        userList.add(new User(userID,username));
+        userList.add(new User(username,username));
       }
       statement.close();      // god afslutning, har ingen reel betydning her
     } catch (

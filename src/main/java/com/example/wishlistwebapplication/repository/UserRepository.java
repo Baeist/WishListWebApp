@@ -12,7 +12,7 @@ public class UserRepository {
 
   private String DBURL = "jdbc:mysql://localhost:3306/wishlist";
   private String user = "root";
-  private String passWord = "2702";
+  private String passWord = "33";
 
   private Connection connection;
 

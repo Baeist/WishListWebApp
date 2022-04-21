@@ -12,7 +12,7 @@ public class UserController {
     this.userService = userService;
   }
 
-  @GetMapping("")
+  @GetMapping("/createUser")
   public String createUser() {
     return "createUser";
   }

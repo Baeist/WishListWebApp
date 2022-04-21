@@ -10,11 +10,11 @@
 <div class="container">
     <h1>Se andres ønskelister</h1>
 
-    <form method="post" action="/findUser">
+    <form method="post" th:action="@{/findUser/}">
 
         <input type="text" id="form_find_user" name="user_name" placeholder="Indtast brugernavn her" required>
         <br>
-        <p><a href="/index">Tilbage</a>
+        <p><a href="/">Tilbage</a>
             <input type="submit" id="find_user_button" name="submit">
         </p>
     </form>

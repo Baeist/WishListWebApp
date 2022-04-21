@@ -1,4 +1,4 @@
-package com.example.wishlistwebapplication.util;
+package com.example.wishlistwebapplication.utilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

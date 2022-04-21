@@ -1,8 +1,12 @@
 package com.example.wishlistwebapplication.controller;
 
+import com.example.wishlistwebapplication.model.User;
 import com.example.wishlistwebapplication.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -12,9 +16,14 @@ public class UserController {
     this.userService = userService;
   }
 
-  @GetMapping("")
+  @GetMapping("/createUser")
   public String createUser() {
     return "createUser";
+  }
+
+  @PostMapping("/createUser")
+  public void sendNewUserInfo(@ModelAttribute User user) {
+    userService.createUser(user);
   }
 
   @GetMapping("/login")
@@ -25,5 +34,11 @@ public class UserController {
   @GetMapping("/findUser")
   public String findUser() {
     return "findUser";
+  }
+
+  @PostMapping("/findUser")
+  public String findUser(@RequestParam("username") String username) {
+    userService.findUser(username);
+    return "redirect:/findUser";
   }
 }

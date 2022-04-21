@@ -2,6 +2,7 @@ package com.example.wishlistwebapplication.repository;
 
 import com.example.wishlistwebapplication.model.User;
 import com.example.wishlistwebapplication.model.Wish;
+import com.example.wishlistwebapplication.utilities.ConnectionManager;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -11,19 +12,16 @@ import java.util.List;
 @Repository
 public class WishListRepository {
 
-  private String DBURL = "jdbc:mysql://localhost:3306/wishlist";
-  private String user = "root";
-  private String passWord = "2702";
-
   private Connection connection;
-
+  /*
   public WishListRepository() {
     setConnection();
   }
 
+
   public void setConnection() {
     try {
-      connection = DriverManager.getConnection(DBURL, user, passWord);
+      connection = ConnectionManager.getConnection();
 
     } catch (Exception e) {
       System.out.println("Did not connect to database" + e);
@@ -59,6 +57,7 @@ public class WishListRepository {
     }
     return wishList;
   }
+
   public ArrayList<Wish> getWishesForUser(User user) {
     ArrayList<Wish> wishList = new ArrayList<>();
 
@@ -67,7 +66,7 @@ public class WishListRepository {
 
       final String SQL_QUERY = "SELECT * FROM wishes WHERE userID = ?";
       PreparedStatement statement = connection.prepareStatement(SQL_QUERY);
-      statement.setInt(1,user.getUserID());
+      statement.setInt(1,user.g());
       ResultSet rs = statement.executeQuery();
 
 
@@ -108,8 +107,7 @@ public class WishListRepository {
       System.out.println("failed to update wishlist");
       return false;
     }
-
   }
 
-
+   */
 }

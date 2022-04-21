@@ -15,70 +15,28 @@
 
 <div class="container-fluid text-center">
     <h1 style="margin-bottom: 3em">[[${username}]] ønskeliste</h1>
-
 <div class="container container-fluid">
 
+
     <div class="row row-cols-auto justify-content-start">
-
-        <div class="col" style="margin-bottom: 1.5em">
-            <div class="card text-md-start" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Kopier Link</a>
+        <th:block th:each="wishlist : ${wishList}">
+            <div class="col" style="margin-bottom: 1.5em">
+                <div class="card text-md-start" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">[[${wishlist.name}]]</h5>
+                        <p class="card-text">[[${wishlist.description}]]</p>
+                        <a href="#" class="card-link">Kopier Link</a>
+                    </div>
                 </div>
             </div>
-        </div>
+    </th:block>
+    </div>
 
-        <div class="col" style="margin-bottom: 1.5em">
-            <div class="card text-md-start" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Kopier Link</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="col" style="margin-bottom: 1.5em">
-            <div class="card text-md-start" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Kopier Link</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="col" style="margin-bottom: 1.5em">
-            <div class="card text-md-start" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Kopier Link</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="col" style="margin-bottom: 1.5em">
-            <div class="card text-md-start" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Kopier Link</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="col" style="margin-bottom: 1.5em">
-            <div class="card text-md-start" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Kopier Link</a>
-                </div>
-            </div>
-        </div>
+
 
 
 

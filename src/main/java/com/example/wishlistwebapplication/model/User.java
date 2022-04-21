@@ -1,25 +1,35 @@
 package com.example.wishlistwebapplication.model;
 
 public class User {
-private int userID;
-private String username;
+  private String username;
+  private String password;
 
-  public User(int userID, String username){
-    this.userID = userID;
+  public User(String username, String password) {
     this.username = username;
-
-  }
-
-  public int getUserID() {
-    return userID;
+    this.password = password;
   }
 
   public String getUsername() {
     return username;
   }
 
+  public String getPassword() {
+    return password;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
   @Override
   public String toString() {
-    return userID + ": " + username;
+    return "User{" +
+        "username='" + username + '\'' +
+        ", password='" + password + '\'' +
+        '}';
   }
 }

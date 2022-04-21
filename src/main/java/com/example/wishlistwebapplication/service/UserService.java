@@ -19,4 +19,27 @@ public class UserService {
   public void findUser(String username) {
     userRepository.findUser(username);
   }
+
+
+  public User haveUsernameWantPassword(String username){
+  return userRepository.haveUserNameGetUserInfo(username);
+  }
+
+  public boolean checkUserPasswordForLogIn(String userName, String password){
+
+    User user = userRepository.haveUserNameGetUserInfo(userName);
+
+    if(user == null)
+      return false;
+
+    if(password.equals(user.getPassword()))
+      return true;
+
+    return false;
+  }
+
+
+
+
+
 }

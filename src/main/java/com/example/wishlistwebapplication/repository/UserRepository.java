@@ -3,11 +3,12 @@ package com.example.wishlistwebapplication.repository;
 import com.example.wishlistwebapplication.model.User;
 import com.example.wishlistwebapplication.util.ConnectionManager;
 import org.springframework.stereotype.Repository;
-
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.ArrayList;
 
 @Repository
 public class UserRepository {
+  Connection connection;
 
   public void createUser(User user) {
       try {
@@ -21,11 +22,10 @@ public class UserRepository {
         e.printStackTrace();
       }
     }
-  }
 
   public void setConnection() {
     try {
-      connection = DriverManager.getConnection(DBURL, user, passWord);
+      connection = ConnectionManager.getConnection();
 
     } catch (Exception e) {
       System.out.println("Did not connect to database" + e);
@@ -36,19 +36,15 @@ public class UserRepository {
     ArrayList<User> userList = new ArrayList<>();
 
     try {
-
       Statement statement = connection.createStatement();
       final String SQL_QUERY = "SELECT * FROM users";
       ResultSet rs = statement.executeQuery(SQL_QUERY);
-
 
       while (rs.next()) {
         int userID = rs.getInt(1);
         String username = rs.getString(2);
         userList.add(new User(userID,username));
-
       }
-
       statement.close();      // god afslutning, har ingen reel betydning her
     } catch (
         SQLException e) {
@@ -57,5 +53,4 @@ public class UserRepository {
     }
     return userList;
   }
-
 }

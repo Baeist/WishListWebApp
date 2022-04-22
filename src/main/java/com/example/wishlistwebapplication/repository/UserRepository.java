@@ -41,7 +41,6 @@ public class UserRepository {
         String wishlist_description = resultSet.getString("wishlist_description");
         listOfWishlists.add(new WishList(wishlist_id, wishlist_name, wishlist_description));
       }
-      System.out.println(listOfWishlists);
       return listOfWishlists;
     } catch (Exception e) {
       e.printStackTrace();

@@ -36,18 +36,18 @@ public class WishListController {
         //User user = userService.getUserFromID(userID)
         // Arraylist<Wishlist> wishlist = wishListService.getWishlist(userID);
         model.addAttribute("username", "Tobias");
-        model.addAttribute("wishList", testWish());
+        //model.addAttribute("wishList", testWish());
         return "userWishlist";
     }
 
 
-    // todo Skal slette bruges kun til test
+    /*todo Skal slette bruges kun til test
     public ArrayList<WishList> testWish() {
         ArrayList<WishList> list = new ArrayList<>();
 
         String desc = "asdads asdkjlads alkjsdalskjd a lskjdalds kjad lkjads lkjadslkj asdlkja dslkjasdl kjasdlk jadslkja sdlkjas lkdjads lkjsadlk jadslk jadslkjasdlkj aslkdja slkd jasld jaldskj alkjds";
 
-        WishList one = new WishList("jule2022", desc, null);
+      /*  WishList one = new WishList("jule2022", desc, null);
         WishList two = new WishList("jule2022", desc, null);
         WishList three = new WishList("jule2022", desc, null);
         WishList four = new WishList("jule2022", desc, null);
@@ -67,7 +67,7 @@ public class WishListController {
 
 
         return list;
+
     }
-
-
+     */
 }

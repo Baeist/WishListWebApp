@@ -54,8 +54,8 @@ public class UserController {
   }
 
   @PostMapping("/findUser")
-  public String findUserWishlist(@RequestParam("username") String username) {
-    userService.findUserWishlist(username);
+  public String findUserWishlist(String username) {
+    userService.findUserWishlist("Tom");
     return "redirect:/findUser";
   }
 }

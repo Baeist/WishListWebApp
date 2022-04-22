@@ -17,19 +17,44 @@
     <h1 style="margin-bottom: 3em">[[${username}]] ønskeliste</h1>
 <div class="container container-fluid">
 
-
     <div class="row row-cols-auto justify-content-start">
         <th:block th:each="wishlist : ${wishList}">
             <div class="col" style="margin-bottom: 1.5em">
                 <div class="card text-md-start" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">[[${wishlist.name}]]</h5>
-                        <p class="card-text">[[${wishlist.description}]]</p>
+                        <p style="height: 7rem" class="card-text">[[${wishlist.description}]]</p>
                         <a href="#" class="card-link">Kopier Link</a>
                     </div>
                 </div>
             </div>
     </th:block>
+
+
+
+        <form th:action="@{/users/save}" method="post">
+            <div class="card text-md-start" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">opret ønskeliste</h5>
+                    <label class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="text-center border-top border-secondary" style="margin: 0; margin-top: 2em;">
+                    <button type="submit" class="btn btn-primary m-2">Save</button>
+                    <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()" >Cancel</button>
+                </div>
+            </div>
+
+
+
+        </form>
+
+
+
+
+
     </div>
 
 

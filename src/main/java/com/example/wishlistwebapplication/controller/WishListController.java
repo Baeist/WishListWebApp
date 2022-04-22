@@ -29,13 +29,10 @@ public class WishListController {
         return "wish_form";
     }
 
-
-    //@GetMapping("/wishlist/user/{userID}")
-    @GetMapping("/wishlist/user/{userID}")
-    public String showAllWishlist(@PathVariable("userID") int userID, Model model) {
-        //User user = userService.getUserFromID(userID)
+    @GetMapping("/wishlist/{username}")
+    public String showAllWishlist(@PathVariable("username") String username, Model model) {
         // Arraylist<Wishlist> wishlist = wishListService.getWishlist(userID);
-        model.addAttribute("username", "Tobias");
+        model.addAttribute("username", username);
         model.addAttribute("wishList", testWish());
         return "userWishlist";
     }
@@ -45,14 +42,15 @@ public class WishListController {
         ArrayList<WishList> list = new ArrayList<>();
 
         String desc = "asdads asdkjlads alkjsdalskjd a lskjdalds kjad lkjads lkjadslkj asdlkja dslkjasdl kjasdlk jadslkja sdlkjas lkdjads lkjsadlk jadslk jadslkjasdlkj aslkdja slkd jasld jaldskj alkjds";
+        String desc2 = "asdads asdkjlads alkjsdalskjd a lskjdalds kjad lkjads lkjadslkj asdlkja dslkjasdl";
 
         WishList one = new WishList("jule2022", desc, null);
         WishList two = new WishList("jule2022", desc, null);
-        WishList three = new WishList("jule2022", desc, null);
+        WishList three = new WishList("jule2022", desc2, null);
         WishList four = new WishList("jule2022", desc, null);
-        WishList five = new WishList("jule2022", desc, null);
+        WishList five = new WishList("jule2022", desc2, null);
         WishList six = new WishList("jule2022", desc, null);
-        WishList seven = new WishList("jule2022", desc, null);
+        WishList seven = new WishList("jule2022", desc2, null);
         //WishList eight = new WishList("jule2022", desc, null);
 
         list.add(one);
@@ -63,7 +61,6 @@ public class WishListController {
         list.add(six);
         list.add(seven);
         //list.add(eight);
-
 
         return list;
     }

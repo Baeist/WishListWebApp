@@ -1,8 +1,11 @@
 package com.example.wishlistwebapplication.service;
 
 import com.example.wishlistwebapplication.model.User;
+import com.example.wishlistwebapplication.model.WishList;
 import com.example.wishlistwebapplication.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -16,8 +19,8 @@ public class UserService {
     userRepository.createUser(user);
   }
 
-  public void findUser(String username) {
-    userRepository.findUser(username);
+  public List<WishList> findUserWishlist(String username) {
+    return userRepository.findUserWishlist(username);
   }
 
 

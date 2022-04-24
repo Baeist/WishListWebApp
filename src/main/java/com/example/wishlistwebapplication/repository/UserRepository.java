@@ -1,43 +1,54 @@
 package com.example.wishlistwebapplication.repository;
 
 import com.example.wishlistwebapplication.model.User;
-import com.example.wishlistwebapplication.utilities.ConnectionManager;
+import com.example.wishlistwebapplication.model.WishList;
 import com.example.wishlistwebapplication.utilities.ConnectionManager;
 import org.springframework.stereotype.Repository;
+
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class UserRepository {
   Connection connection;
 
   public void createUser(User user) {
-      try {
-        var connection = ConnectionManager.getConnection();
-        String INSERT_SQL = "INSERT INTO users(userID, username, password) VALUES (null, ?, ?)"; // INSERT INTO product(name, price) VALUES (?, ?)
-        PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
-        ps.setString(1, user.getUsername());
-        ps.setString(2, user.getPassword());
-        System.out.println(user.getPassword() + user.getUsername() + user.getUserID());
-        ps.executeUpdate();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    }
-
-    public User findUser(String username) {
     try {
       var connection = ConnectionManager.getConnection();
-      final String SQL_QUERY = "SELECT username FROM users WHERE username = ?";
+      String INSERT_SQL = "INSERT INTO users(username, password) VALUES (?, ?)"; // INSERT INTO product(name, price) VALUES (?, ?)
+      PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
+      ps.setString(1, user.getUsername());
+      ps.setString(2, user.getPassword());
+      System.out.println(user.getPassword() + user.getUsername() + user.getUserID());
+      ps.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public List<WishList> findUserWishlist(String username) {
+    try {
+      Connection connection = ConnectionManager.getConnection();
+      final String SQL_QUERY = "SELECT wishlist_id, wishlist_name, wishlist_description FROM wishlist WHERE username = ? ORDER BY wishlist_id";
       PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
       ps.setString(1, username);
-      ps.executeUpdate();
-      } catch (Exception e) {
+      List<WishList> listOfWishlists = new ArrayList<>();
+      ResultSet resultSet = ps.executeQuery();
+      while (resultSet.next()) {
+        int wishlist_id = resultSet.getInt("wishlist_id");
+        String wishlist_name = resultSet.getString("wishlist_name");
+        String wishlist_description = resultSet.getString("wishlist_description");
+        listOfWishlists.add(new WishList(wishlist_id, wishlist_name, wishlist_description));
+      }
+      return listOfWishlists;
+    } catch (Exception e) {
       e.printStackTrace();
-        }
-    return null;
     }
-    // gets a user without their wishlist but includes id, name and password
+    return null;
+  }
+
+  // gets a user without their wishlist but includes id, name and password
   public User haveUserNameGetUserInfo(String username) {
 
     try {
@@ -71,6 +82,7 @@ public class UserRepository {
     }
 
   }
+
   public ArrayList<User> getAllUsers() {
     ArrayList<User> userList = new ArrayList<>();
 
@@ -82,7 +94,7 @@ public class UserRepository {
       while (rs.next()) {
         int userID = rs.getInt(1);
         String username = rs.getString(2);
-        userList.add(new User(username,username));
+        userList.add(new User(username, username));
       }
       statement.close();      // god afslutning, har ingen reel betydning her
     } catch (

@@ -3,6 +3,7 @@ package com.example.wishlistwebapplication.controller;
 import com.example.wishlistwebapplication.model.User;
 import com.example.wishlistwebapplication.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,13 +50,13 @@ public class UserController {
   }
 
   @GetMapping("/findUser")
-  public String findUser() {
+  public String findUserWishlist() {
     return "findUser";
   }
 
   @PostMapping("/findUser")
-  public String findUser(@RequestParam("username") String username) {
-    userService.findUser(username);
+  public String findUserWishlist(String username, Model model) {
+    model.addAttribute("wishlists", userService.findUserWishlist("Tom"));
     return "redirect:/findUser";
   }
 }

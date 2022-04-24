@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.ArrayList;
 
 @Controller
@@ -43,6 +42,13 @@ public class WishListController {
         return "wishlist";
     }
 
+    
+    
+    
+    
+    
+    
+    
     @GetMapping("/wishlist")
     public String wishlist(){
         return "findUser";
@@ -51,7 +57,8 @@ public class WishListController {
 
 
 
-    // todo Skal slette bruges kun til test
+
+    //todo Skal slette bruges kun til test
     public ArrayList<WishList> testWish() {
         ArrayList<WishList> list = new ArrayList<>();
 
@@ -77,8 +84,4 @@ public class WishListController {
 
         return list;
     }
-
-
-
-
 }

@@ -1,28 +1,16 @@
 package com.example.wishlistwebapplication.model;
 
 public class Wish {
-  private int ID;
-  private int userID;
   private String itemName;
   private double price;
   private String url;
   private String description;
 
-  public Wish(int ID, int userID, String itemName, double price, String url, String description) {
-    this.ID = ID;
-    this.userID = userID;
+  public Wish(String itemName, double price, String url, String description) {
     this.itemName = itemName;
     this.price = price;
     this.url = url;
     this.description = description;
-  }
-
-  public int getID() {
-    return ID;
-  }
-
-  public int getUserID() {
-    return userID;
   }
 
   public String getItemName() {
@@ -44,9 +32,7 @@ public class Wish {
   @Override
   public String toString() {
     return "Wish{" +
-        "ID=" + ID +
-        ", userID=" + userID +
-        ", itemName='" + itemName + '\'' +
+        "itemName='" + itemName + '\'' +
         ", price=" + price +
         ", url='" + url + '\'' +
         ", description='" + description + '\'' +

@@ -6,8 +6,9 @@ import com.example.wishlistwebapplication.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 @Controller
@@ -35,10 +36,22 @@ public class WishListController {
         return "all_users_wishlist";
     }
 
+    @PostMapping("/wishlist/{username}")
+    public String createWishlist(@PathVariable("username") String username,
+                                 @RequestParam("name") String name,
+                                 @RequestParam("description") String description){
+
+        System.out.println(name);
+        System.out.println(description);
+
+        return "redirect:/wishlist/" + username;
+    }
+
+
+
     @GetMapping("/wishlist/{username}/{id}")
     public String showWishlist  (@PathVariable("username") String username, @PathVariable("id") int wishID,
                                  Model model){
-
         return "wishlist";
     }
     

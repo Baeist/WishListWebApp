@@ -34,15 +34,18 @@
     </th:block>
 
         <!-- form for creating a wishlist -->
-        <form th:action="@{/users/save}" method="post" >
+        <!--/*@thymesVar id="WishList" type="WishList"*/-->
+
+        <form method="post">
             <div class="card text-md-start" style="width: 18rem;">
                 <div class="card-body">
+              
                     <div class="col-lg-auto" style="margin-bottom: 1em">
-                        <input type="text" class="form-control" required placeholder="Ønskeliste navn">
+                        <input name="name" type="text" class="form-control" required placeholder="Ønskeliste navn">
                     </div>
 
                     <div class="col-lg-auto" style="height: 6.3rem">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"
                               style="resize: none" maxlength="160" minlength="0" placeholder="Beskrivelse"
                     ></textarea>
                     </div>

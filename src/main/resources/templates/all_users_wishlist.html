@@ -24,9 +24,9 @@
             <div class="col" style="margin-bottom: 1.5em">
                 <div class="card text-md-start" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">[[${wishlist.name}]]</h5>
+                        <h5 class="card-title">[[${wishlist.wishlist_name}]]</h5>
                         <p style="height: 8rem" class="card-text">[[${wishlist.description}]]</p>
-                        <a th:href="@{'/wishlist/' + ${username} + '/' + ${wishlist.id}}" class="card-link">Se ønskeliste</a> <!-- Not an Error. Intellij being wierd  -->
+                        <a th:href="@{'/wishlist/' + ${username} + '/' + ${wishlist.wishlist_ID}}" class="card-link">Se ønskeliste</a> <!-- Not an Error. Intellij being wierd  -->
 
                     </div>
                 </div>
@@ -56,13 +56,7 @@
 
 <!-- Spacing for the footer -->
 <div style="height: 150px">
-
-
-
 </div>
-
-
-
 
 <footer th:replace="fragments/footers :: footer-normal">
     Footer will be placed here

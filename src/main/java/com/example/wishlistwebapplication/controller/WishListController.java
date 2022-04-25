@@ -41,37 +41,26 @@ public class WishListController {
 
         return "wishlist";
     }
-
-    
-    
-    
-    
-    
-    
     
     @GetMapping("/wishlist")
     public String wishlist(){
         return "findUser";
     }
 
-
-
-
-
-    //todo Skal slette bruges kun til test
+    //todo Skal slette:når vi har fået databasen op: bruges kun til test
     public ArrayList<WishList> testWish() {
         ArrayList<WishList> list = new ArrayList<>();
 
         String desc = "asdads asdkjlads alkjsdalskjd a lskjdalds kjad lkjads lkjadslkj asdlkja dslkjasdl kjasdlk jadslkja sdlkjas lkdjads lkjsadlk jadslk jadslkjasdlkj aslkdja slkd jasld jaldskj alkjds";
         String desc2 = "asdads asdkjlads alkjsdalskjd a lskjdalds kjad lkjads lkjadslkj asdlkja dslkjasdl";
 
-        WishList one = new WishList(1, "jule2022", desc, null);
-        WishList two = new WishList(2,"jule2022", desc, null);
-        WishList three = new WishList(3,"jule2022", desc2, null);
-        WishList four = new WishList(4,"jule2022", desc, null);
-        WishList five = new WishList(5,"jule2022", desc2, null);
-        WishList six = new WishList(6,"jule2022", desc, null);
-        WishList seven = new WishList(7,"jule2022", desc2, null);
+        WishList one = new WishList(1, "jule2022", desc);
+        WishList two = new WishList(2,"jule2022", desc);
+        WishList three = new WishList(3,"jule2022", desc2);
+        WishList four = new WishList(4,"jule2022", desc);
+        WishList five = new WishList(5,"jule2022", desc2);
+        WishList six = new WishList(6,"jule2022", desc);
+        WishList seven = new WishList(7,"jule2022", desc2);
 
         list.add(one);
         list.add(two);

@@ -14,18 +14,18 @@ public class UserRepository {
   Connection connection;
 
   public void createUser(User user) {
-    try {
-      var connection = ConnectionManager.getConnection();
-      String INSERT_SQL = "INSERT INTO users(username, password) VALUES (?, ?)"; // INSERT INTO product(name, price) VALUES (?, ?)
-      PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
-      ps.setString(1, user.getUsername());
-      ps.setString(2, user.getPassword());
-      System.out.println(user.getPassword() + user.getUsername() + user.getUserID());
-      ps.executeUpdate();
-    } catch (Exception e) {
-      e.printStackTrace();
+      try {
+        var connection = ConnectionManager.getConnection();
+        String INSERT_SQL = "INSERT INTO users(userID, username, password) VALUES (null, ?, ?)"; // INSERT INTO product(name, price) VALUES (?, ?)
+        PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
+        ps.setString(1, user.getUsername());
+        ps.setString(2, user.getPassword());
+        // System.out.println(user.getPassword() + user.getUsername() + user.getUserID());
+        ps.executeUpdate();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
-  }
 
   public List<WishList> findUserWishlist(String username) {
     try {

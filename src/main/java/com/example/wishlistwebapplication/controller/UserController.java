@@ -23,13 +23,17 @@ public class UserController {
   }
 
   @PostMapping("/createUser")
-  public void sendNewUserInfo(@RequestParam("username") String username, @RequestParam("password") String password) {
+  public String sendNewUserInfo(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
     User user = new User();
     user.setUsername(username);
     user.setPassword(password);
 
     userService.createUser(user);
 
+    model.addAttribute("username", username);
+    model.addAttribute("wishlist", testWish());
+
+    return "all_users_wishlist";
   }
 
   @GetMapping("/login")

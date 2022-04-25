@@ -1,6 +1,7 @@
 package com.example.wishlistwebapplication.repository;
 
 import com.example.wishlistwebapplication.model.User;
+import com.example.wishlistwebapplication.model.Wish;
 import com.example.wishlistwebapplication.model.WishList;
 import com.example.wishlistwebapplication.utilities.ConnectionManager;
 import org.springframework.stereotype.Repository;
@@ -14,18 +15,41 @@ public class UserRepository {
   Connection connection;
 
   public void createUser(User user) {
-      try {
-        var connection = ConnectionManager.getConnection();
-        String INSERT_SQL = "INSERT INTO users(userID, username, password) VALUES (null, ?, ?)"; // INSERT INTO product(name, price) VALUES (?, ?)
-        PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
-        ps.setString(1, user.getUsername());
-        ps.setString(2, user.getPassword());
-        // System.out.println(user.getPassword() + user.getUsername() + user.getUserID());
-        ps.executeUpdate();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+    try {
+      var connection = ConnectionManager.getConnection();
+      String INSERT_SQL = "INSERT INTO users(userID, username, password) VALUES (null, ?, ?)"; // INSERT INTO product(name, price) VALUES (?, ?)
+      PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
+      ps.setString(1, user.getUsername());
+      ps.setString(2, user.getPassword());
+      // System.out.println(user.getPassword() + user.getUsername() + user.getUserID());
+      ps.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
+
+  public List<Wish> findWishlistWishes(int wishlist_id) {
+    try {
+      var connection = ConnectionManager.getConnection();
+      final String SQL_QUERY = "SELECT * FROM wishes WHERE wishlist_id = ?";
+      PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+      ps.setInt(1, wishlist_id);
+      List<Wish> listOfWishes = new ArrayList<>();
+      ResultSet resultSet = ps.executeQuery();
+      while (resultSet.next()) {
+        String itemName = resultSet.getString("item_name");
+        double price = resultSet.getInt("price_dkk");
+        String url = resultSet.getString("url");
+        String description = resultSet.getString("description");
+        listOfWishes.add(new Wish(itemName, price, url, description));
+      }
+      return listOfWishes;
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
 
   public List<WishList> findUserWishlist(String username) {
     try {
@@ -59,13 +83,11 @@ public class UserRepository {
       ps.setString(1, username);
       ResultSet rs = ps.executeQuery();
 
-      while (rs.next()) {
         int userID = rs.getInt(1);
         username = rs.getString(2);
         String password = rs.getString(3);
         User user = new User(userID, username, password);
         return user;
-      }
 
     } catch (Exception e) {
       e.printStackTrace();

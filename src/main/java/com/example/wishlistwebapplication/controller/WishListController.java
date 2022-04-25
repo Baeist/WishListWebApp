@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.ArrayList;
 
 @Controller
@@ -73,5 +76,11 @@ public class WishListController {
         //list.add(eight);
 
         return list;
+    }
+
+    @GetMapping("/findWishlistWishes")
+    public String findWishlistWishes(@RequestParam("wishlist_id") int wishlist_id) {
+        userService.findWishlistWishes(wishlist_id);
+        return null;
     }
 }

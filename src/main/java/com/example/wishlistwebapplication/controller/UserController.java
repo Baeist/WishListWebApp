@@ -58,16 +58,15 @@ public class UserController {
   }
 
   @GetMapping("/findUser")
-  public String findUserWishlist() {
+  public String findUser() {
     return "findUser";
   }
 
   @PostMapping("/findUser")
-  public String findUserWishlist(String username, Model model) {
-    model.addAttribute("wishlists", userService.findUserWishlist("Tom"));
+  public String findUserWishlist(@RequestParam("username") String username, Model model) {
+    model.addAttribute("wishlists", userService.findUserWishlist(username));
     return "redirect:/findUser";
   }
-
 
   //todo Skal slette:når vi har fået databasen op: bruges kun til test
   public ArrayList<WishList> testWish() {

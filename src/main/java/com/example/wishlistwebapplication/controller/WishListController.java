@@ -54,10 +54,6 @@ public class WishListController {
     }
 
 
-
-
-
-
     @GetMapping("/wishlist/{username}/{id}")
     public String showWishlist  (@PathVariable("username") String username, @PathVariable("id") int wishID,
                                  Model model){

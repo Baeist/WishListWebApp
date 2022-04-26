@@ -1,6 +1,7 @@
 package com.example.wishlistwebapplication.controller;
 
 import com.example.wishlistwebapplication.model.Wish;
+import com.example.wishlistwebapplication.model.Wish;
 import com.example.wishlistwebapplication.model.WishList;
 import com.example.wishlistwebapplication.service.UserService;
 import com.example.wishlistwebapplication.service.WishListService;
@@ -33,6 +34,14 @@ public class WishListController {
         return "redirect:/findUser";
     }
 
+    @GetMapping("/find-wishlist-wishes")
+    public String findWishlistWishes(@RequestParam("wishlist_id") int wishlist_id) {
+        wishListService.findWishlistWishes(wishlist_id);
+        return null;
+    }
+
+
+
     @GetMapping("/wish_form")
     public String wish_form() {
         return "wish_form";
@@ -49,35 +58,49 @@ public class WishListController {
     @PostMapping("/wishlist/{username}")
     public String createWishlist(@PathVariable("username") String username,
                                  @RequestParam("name") String name,
-                                 @RequestParam("description") String description){
+                                 @RequestParam("description") String description) {
 
+        System.out.println(name);
+        System.out.println(description);
         //wishListService
 
         return "redirect:/wishlist/" + username;
     }
 
-
-
-
-
-
     @GetMapping("/wishlist/{username}/{id}")
-    public String showWishlist  (@PathVariable("username") String username, @PathVariable("id") int wishlistID,
-                                 Model model){
-
+    public String showWishlist(@PathVariable("username") String username, @PathVariable("id") int wishlistID,
+                               Model model) {
         // needs a service method to gain the wishlist from a username and wishlistID
         model.addAttribute("username", username);
         model.addAttribute("wishes", testWishDisplay());
-
-
         return "wishlist";
     }
-    
-    @GetMapping("/wishlist")
-    public String wishlist(){
-        return "findUser";
-    }
+        @GetMapping("/wishlist")
+        public String wishlist () {
+            return "findUser";
+        }
 
+
+
+    //todo skal slettes:når vi for databasen op at kører
+    public ArrayList<Wish> testWishDisplay(){
+        ArrayList<Wish> wishes = new ArrayList<>();
+
+
+        String itemName = "Iphone";
+        double price = 9999.99;
+        String url = "https://www.apple.com/dk/";
+        String description =    "9 kr./måned efter den gratis prøveperiode. Ét abonnement pr. gruppe med Familiedeling. "
+            +   "Ét abonnement pr. gruppe med Familiedeling.";
+
+        Wish wish1 = new Wish(itemName, price, url, description);
+
+        for (int i = 0; i < 15; i++) {
+            wishes.add(wish1);
+        }
+
+        return wishes;
+    }
     //todo Skal slette:når vi har fået databasen op: bruges kun til test
     public ArrayList<WishList> testWish() {
         ArrayList<WishList> list = new ArrayList<>();
@@ -104,24 +127,4 @@ public class WishListController {
 
         return list;
     }
-    //todo skal slettes:når vi for databasen op at kører
-    public ArrayList<Wish> testWishDisplay(){
-        ArrayList<Wish> wishes = new ArrayList<>();
-
-
-        String itemName = "Iphone";
-        double price = 9999.99;
-        String url = "https://www.apple.com/dk/";
-        String description =    "9 kr./måned efter den gratis prøveperiode. Ét abonnement pr. gruppe med Familiedeling. "
-                            +   "Ét abonnement pr. gruppe med Familiedeling.";
-
-        Wish wish1 = new Wish(itemName, price, url, description);
-
-        for (int i = 0; i < 15; i++) {
-            wishes.add(wish1);
-        }
-
-        return wishes;
-    }
-
 }

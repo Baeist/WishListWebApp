@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 @Controller
@@ -42,7 +44,7 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public String succesfulLogIn(@RequestParam("username") String username, @RequestParam("password") String password, Model model){
+  public String succesfulLogIn(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpServletResponse response){
     boolean checkPassword = false;
 
     model.addAttribute("username", username);
@@ -51,8 +53,11 @@ public class UserController {
     checkPassword = userService.checkUserPasswordForLogIn(username, password);
 
     if(checkPassword) {
+      Cookie cookie = new Cookie("username", username);
+      response.addCookie(cookie);
       return "all_users_wishlist";
     }
+    response.setStatus(401);
     return "redirect:/login"; // skal have fejl til bruger måske?
 
   }
@@ -60,12 +65,6 @@ public class UserController {
   @GetMapping("/findUser")
   public String findUser() {
     return "findUser";
-  }
-
-  @PostMapping("/findUser")
-  public String findUserWishlist(@RequestParam("username") String username, Model model) {
-    model.addAttribute("wishlists", userService.findUserWishlist(username));
-    return "redirect:/findUser";
   }
 
   //todo Skal slette:når vi har fået databasen op: bruges kun til test

@@ -56,6 +56,24 @@ public class WishListRepository {
     }
     return null;
   }
+  //TODO wishlist mangler navn og derfra metde til at finde userID fra navnet herunder
+  public void insertNewWishlistFromUser(String username, String name, String description){
+    try{
+      var connection = ConnectionManager.getConnection();
+      int userID = 1; // mangler metode til at finde id fra username
+
+      String sqlQuery = "INSERT INTO wishlists(wishlistID, userID, description) VALUES (null, ?, ?)";
+      PreparedStatement ps = connection.prepareStatement(sqlQuery);
+      ps.setInt(1, userID);
+      ps.setString(2, description);
+      ps.executeUpdate();
+    }
+    catch(Exception e){
+      System.out.println("Failed to insert new wishlist " + e);
+    }
+
+  }
+
   /*
   public WishListRepository() {
     setConnection();

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
@@ -45,7 +46,8 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public String succesfulLogIn(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpServletResponse response){
+  public String succesfulLogIn(@RequestParam("username") String username,
+                               @RequestParam("password") String password, Model model, HttpSession session){
     boolean checkPassword = false;
 
     model.addAttribute("username", username);
@@ -54,12 +56,11 @@ public class UserController {
     checkPassword = userService.checkUserPasswordForLogIn(username, password);
 
     if(checkPassword) {
-      cookie = new Cookie(username, username);
-      response.addCookie(cookie);
-
-      return "redirect:/wishlist/" + cookie.getName();
+      session.setAttribute("username", username);
+      return "redirect:/wishlist/" + session.getAttribute("username");
     }
-    response.setStatus(401);
+
+    session.invalidate();
     return "redirect:/login"; // skal have fejl til bruger måske?
 
   }

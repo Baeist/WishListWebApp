@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
@@ -56,9 +57,11 @@ public class WishListController {
     }
     // TODO mangler cookie for at det her reelt virker, det virker hvis man selv skriver url korrekt pt
     @PostMapping("/wishlist/{username}")
-    public String createWishlist(@PathVariable("username") String username,
+    public String createWishlist(
                                  @RequestParam("name") String name,
-                                 @RequestParam("description") String description) {
+                                 @RequestParam("description") String description,
+                                 HttpSession session) {
+        String username = (String)session.getAttribute("username");
         wishListService.insertNewWishlistFromUser(username, name, description);
 
         return "redirect:/wishlist/" + username;

@@ -20,7 +20,7 @@ create table if not exists wishlists
     wishlistID	int		auto_increment		not null
     primary key,
     userID      int          null,
-    url			varchar(500) null,
+    list_name			varchar(50) not null,
     description varchar(160) null,
     foreign key (userID) references users(userID)
     );

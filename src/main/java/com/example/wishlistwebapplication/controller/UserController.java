@@ -28,7 +28,8 @@ public class UserController {
 
   @PostMapping("/createUser")
   public String sendNewUserInfo(@RequestParam("username") String username,
-                                @RequestParam("password") String password, Model model, HttpSession session) {
+                                @RequestParam("password") String password,
+                                Model model, HttpSession session) {
     User user = new User();
     user.setUsername(username);
     user.setPassword(password);

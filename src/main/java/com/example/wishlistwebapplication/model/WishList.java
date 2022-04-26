@@ -1,12 +1,13 @@
 package com.example.wishlistwebapplication.model;
 
-
+import java.util.List;
 
 public class WishList {
 
   private int wishlist_ID;
   private String wishlist_name;
   private String description;
+
 
   public WishList(int wishlist_ID, String wishlist_name, String description){
     this.wishlist_ID = wishlist_ID;
@@ -21,7 +22,7 @@ public class WishList {
   public void setWishlist_ID(int wishlist_ID) {
     this.wishlist_ID = wishlist_ID;
   }
-  
+
   public String getWishlist_name() {
     return wishlist_name;
   }

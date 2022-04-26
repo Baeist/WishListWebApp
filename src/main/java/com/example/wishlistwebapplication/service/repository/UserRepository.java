@@ -1,4 +1,4 @@
-package com.example.wishlistwebapplication.repository;
+package com.example.wishlistwebapplication.service.repository;
 
 import com.example.wishlistwebapplication.model.User;
 import com.example.wishlistwebapplication.model.Wish;
@@ -38,12 +38,13 @@ public class UserRepository {
       ps.setString(1, username);
       ResultSet rs = ps.executeQuery();
 
+      while(rs.next()) {
         int userID = rs.getInt(1);
         username = rs.getString(2);
         String password = rs.getString(3);
         User user = new User(userID, username, password);
         return user;
-
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }

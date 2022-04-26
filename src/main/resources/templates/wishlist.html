@@ -13,9 +13,42 @@
     Header will be placed here
 </header>
 
-<div style="margin: 6rem" class="container container-fluid>>">
+<!--
+    private String itemName;
+    private double price;
+    private String url;
+    private String description;
+-->
 
+<div style="margin: 6rem" class="container container-fluid>>">
+    <h1 style="margin-top: 18px">[[${username}]] ønskelister:</h1>
+    <!-- Content -->
+    <div class="row row-cols-auto justify-content-start">
+        <!-- Displays Wishlist -->
+        <th:block th:each="Wish : ${wishes}">
+            <div class="col" style="margin-bottom: 1.5em">
+                <div class="card text-md-start" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">[[${Wish.itemName}]]</h5>
+                        <p  class="card-text">[[${Wish.price}]] dkk.</p>
+                        <p style="height: 7rem" class="card-text">[[${Wish.description}]]</p>
+                        <a class="card-link">link</a>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+
+        <!-- form for creating a wishlist -->
+
+            <div class="card text-md-start" style="width: 18rem;">
+                <div class="card-body">
+                    <button type="submit" class="btn btn-primary m-1">Opret Ønskeliste</button>
+                </div>
+            </div>
 </div>
+
+
+
 
 <!-- Spacing for the footer -->
 <div style="height: 150px">

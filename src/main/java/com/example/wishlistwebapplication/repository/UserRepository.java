@@ -28,50 +28,6 @@ public class UserRepository {
     }
   }
 
-  public List<Wish> findWishlistWishes(int wishlist_id) {
-    try {
-      var connection = ConnectionManager.getConnection();
-      final String SQL_QUERY = "SELECT * FROM wishes WHERE wishlist_id = ?";
-      PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
-      ps.setInt(1, wishlist_id);
-      List<Wish> listOfWishes = new ArrayList<>();
-      ResultSet resultSet = ps.executeQuery();
-      while (resultSet.next()) {
-        String itemName = resultSet.getString("item_name");
-        double price = resultSet.getInt("price_dkk");
-        String url = resultSet.getString("url");
-        String description = resultSet.getString("description");
-        listOfWishes.add(new Wish(itemName, price, url, description));
-      }
-      return listOfWishes;
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
-
-
-  public List<WishList> findUserWishlist(String username) {
-    try {
-      Connection connection = ConnectionManager.getConnection();
-      final String SQL_QUERY = "SELECT wishlist_id, wishlist_name, wishlist_description FROM wishlist WHERE username = ? ORDER BY wishlist_id";
-      PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
-      ps.setString(1, username);
-      List<WishList> listOfWishlists = new ArrayList<>();
-      ResultSet resultSet = ps.executeQuery();
-      while (resultSet.next()) {
-        int wishlist_id = resultSet.getInt("wishlist_id");
-        String wishlist_name = resultSet.getString("wishlist_name");
-        String wishlist_description = resultSet.getString("wishlist_description");
-        listOfWishlists.add(new WishList(wishlist_id, wishlist_name, wishlist_description));
-      }
-      return listOfWishlists;
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
-
   // gets a user without their wishlist but includes id, name and password
   public User haveUserNameGetUserInfo(String username) {
 

@@ -1,7 +1,6 @@
 package com.example.wishlistwebapplication.controller;
 
 import com.example.wishlistwebapplication.model.Wish;
-import com.example.wishlistwebapplication.model.Wish;
 import com.example.wishlistwebapplication.model.WishList;
 import com.example.wishlistwebapplication.service.UserService;
 import com.example.wishlistwebapplication.service.WishListService;
@@ -19,12 +18,7 @@ import java.util.ArrayList;
 public class WishListController {
 
     @Autowired
-    private UserService userService;
     WishListService wishListService;
-
-    public WishListController(WishListService wishListService) {
-        this.wishListService = wishListService;
-    }
 
     @GetMapping("/wish_form")
     public String wish_form() {

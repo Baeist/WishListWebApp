@@ -14,6 +14,7 @@ import java.util.ArrayList;
 @Controller
 public class UserController {
   UserService userService;
+  Cookie cookie;
 
   public UserController(UserService userService) {
     this.userService = userService;
@@ -53,9 +54,10 @@ public class UserController {
     checkPassword = userService.checkUserPasswordForLogIn(username, password);
 
     if(checkPassword) {
-      Cookie cookie = new Cookie("username", username);
+      cookie = new Cookie(username, username);
       response.addCookie(cookie);
-      return "all_users_wishlist";
+
+      return "redirect:/wishlist/" + cookie.getName();
     }
     response.setStatus(401);
     return "redirect:/login"; // skal have fejl til bruger måske?

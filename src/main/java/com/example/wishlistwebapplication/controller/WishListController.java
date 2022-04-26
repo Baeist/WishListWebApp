@@ -18,8 +18,6 @@ import java.util.ArrayList;
 @Controller
 public class WishListController {
 
-
-
     @Autowired
     private UserService userService;
     WishListService wishListService;
@@ -27,20 +25,6 @@ public class WishListController {
     public WishListController(WishListService wishListService) {
         this.wishListService = wishListService;
     }
-
-    @PostMapping("/find-user-wishlist")
-    public String findUserWishlist(@RequestParam("username") String username, Model model) {
-        model.addAttribute("wishlists", wishListService.findUserWishlist(username));
-        return "redirect:/findUser";
-    }
-
-    @GetMapping("/find-wishlist-wishes")
-    public String findWishlistWishes(@RequestParam("wishlist_id") int wishlist_id) {
-        wishListService.findWishlistWishes(wishlist_id);
-        return null;
-    }
-
-
 
     @GetMapping("/wish_form")
     public String wish_form() {

@@ -1,14 +1,11 @@
-package com.example.wishlistwebapplication.service.repository;
+package com.example.wishlistwebapplication.repository;
 
 import com.example.wishlistwebapplication.model.User;
-import com.example.wishlistwebapplication.model.Wish;
-import com.example.wishlistwebapplication.model.WishList;
 import com.example.wishlistwebapplication.utilities.ConnectionManager;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 public class UserRepository {

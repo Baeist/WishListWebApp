@@ -33,7 +33,7 @@ public class WishListController {
         model.addAttribute("wishlist", testWish());
         return "all_users_wishlist";
     }
-    // TODO mangler cookie for at det her reelt virker, det virker hvis man selv skriver url korrekt pt
+
     @PostMapping("/wishlist/{username}")
     public String createWishlist(
                                  @RequestParam("name") String name,

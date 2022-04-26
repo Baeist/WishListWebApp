@@ -18,6 +18,8 @@ import java.util.ArrayList;
 @Controller
 public class WishListController {
 
+
+
     @Autowired
     private UserService userService;
     WishListService wishListService;
@@ -26,7 +28,7 @@ public class WishListController {
         this.wishListService = wishListService;
     }
 
-    @GetMapping("/find-user-wishlist")
+    @PostMapping("/find-user-wishlist")
     public String findUserWishlist(@RequestParam("username") String username, Model model) {
         model.addAttribute("wishlists", wishListService.findUserWishlist(username));
         return "redirect:/findUser";
@@ -38,6 +40,8 @@ public class WishListController {
         return null;
     }
 
+
+
     @GetMapping("/wish_form")
     public String wish_form() {
         return "wish_form";
@@ -47,6 +51,7 @@ public class WishListController {
     public String showAllWishlist(@PathVariable("username") String username, Model model) {
         // Arraylist<Wishlist> wishlist = wishListService.getWishlist(userID);
         model.addAttribute("username", username);
+        model.addAttribute("wishlist", testWish());
         return "all_users_wishlist";
     }
 
@@ -74,6 +79,8 @@ public class WishListController {
         public String wishlist () {
             return "findUser";
         }
+
+
 
     //todo skal slettes:når vi for databasen op at kører
     public ArrayList<Wish> testWishDisplay(){

@@ -42,7 +42,7 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public String succesfulLogIn(@RequestParam("username") String username, @RequestParam("password") String password, Model model){
+  public String succesfulLogIn(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
     boolean checkPassword = false;
 
     model.addAttribute("username", username);
@@ -50,7 +50,7 @@ public class UserController {
 
     checkPassword = userService.checkUserPasswordForLogIn(username, password);
 
-    if(checkPassword) {
+    if (checkPassword) {
       return "all_users_wishlist";
     }
     return "redirect:/login"; // skal have fejl til bruger måske?
@@ -70,12 +70,12 @@ public class UserController {
     String desc2 = "asdads asdkjlads alkjsdalskjd a lskjdalds kjad lkjads lkjadslkj asdlkja dslkjasdl";
 
     WishList one = new WishList(1, "jule2022", desc);
-    WishList two = new WishList(2,"jule2022", desc);
-    WishList three = new WishList(3,"jule2022", desc2);
-    WishList four = new WishList(4,"jule2022", desc);
-    WishList five = new WishList(5,"jule2022", desc2);
-    WishList six = new WishList(6,"jule2022", desc);
-    WishList seven = new WishList(7,"jule2022", desc2);
+    WishList two = new WishList(2, "jule2022", desc);
+    WishList three = new WishList(3, "jule2022", desc2);
+    WishList four = new WishList(4, "jule2022", desc);
+    WishList five = new WishList(5, "jule2022", desc2);
+    WishList six = new WishList(6, "jule2022", desc);
+    WishList seven = new WishList(7, "jule2022", desc2);
 
     list.add(one);
     list.add(two);

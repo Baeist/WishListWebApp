@@ -33,7 +33,6 @@ public class UserRepository {
 
     try {
       var connection = ConnectionManager.getConnection();
-      Statement statement = connection.createStatement();
       final String SQL_QUERY = "SELECT * FROM users WHERE username = ?";
       PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
       ps.setString(1, username);

@@ -40,6 +40,7 @@ public class UserController {
     model.addAttribute("wishlist", testWish());
 
     session.setAttribute("username", username);
+    session.setAttribute("isLoggedIn", true);
 
     return "redirect:/wishlist/" + session.getAttribute("username");
   }
@@ -61,10 +62,11 @@ public class UserController {
 
     if(checkPassword) {
       session.setAttribute("username", username);
+      session.setAttribute("isLoggedIn", true);
       return "redirect:/wishlist/" + session.getAttribute("username");
     }
 
-    session.invalidate();
+
     return "redirect:/login"; // skal have fejl til bruger måske?
 
   }

@@ -29,6 +29,18 @@ public class WishListController {
         this.wishListService = wishListService;
     }
 
+    @PostMapping("/find-user-wishlist")
+    public String findUserWishlist(@RequestParam("username") String username, Model model) {
+        model.addAttribute("wishlists", wishListService.findUserWishlist(username));
+        return "redirect:/findUser";
+    }
+
+    @GetMapping("/find-wishlist-wishes")
+    public String findWishlistWishes(@RequestParam("wishlist_id") int wishlist_id) {
+        wishListService.findWishlistWishes(wishlist_id);
+        return null;
+    }
+
     @GetMapping("/wish_form")
     public String wish_form() {
         return "wish_form";
@@ -52,11 +64,6 @@ public class WishListController {
 
         return "redirect:/wishlist/" + username;
     }
-
-
-
-
-
 
     @GetMapping("/wishlist/{username}/{id}")
     public String showWishlist  (@PathVariable("username") String username, @PathVariable("id") int wishID,
@@ -95,14 +102,5 @@ public class WishListController {
         //list.add(eight);
 
         return list;
-    }
-
-
-
-
-    @GetMapping("/findWishlistWishes")
-    public String findWishlistWishes(@RequestParam("wishlist_id") int wishlist_id) {
-        userService.findWishlistWishes(wishlist_id);
-        return null;
     }
 }

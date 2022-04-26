@@ -20,15 +20,6 @@ public class UserService {
     userRepository.createUser(user);
   }
 
-  public List<WishList> findUserWishlist(String username) {
-    return userRepository.findUserWishlist(username);
-  }
-
-  public List<Wish> findWishlistWishes (int wishlist_id) {
-    return userRepository.findWishlistWishes(wishlist_id);
-  }
-
-
   public User haveUsernameWantPassword(String username){
   return userRepository.haveUserNameGetUserInfo(username);
   }

@@ -2,7 +2,7 @@ package com.example.wishlistwebapplication.service;
 
 import com.example.wishlistwebapplication.model.Wish;
 import com.example.wishlistwebapplication.model.WishList;
-import com.example.wishlistwebapplication.service.repository.WishListRepository;
+import com.example.wishlistwebapplication.repository.WishListRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

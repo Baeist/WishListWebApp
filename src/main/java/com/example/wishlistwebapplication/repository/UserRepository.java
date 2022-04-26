@@ -1,4 +1,4 @@
-package com.example.wishlistwebapplication.service.repository;
+package com.example.wishlistwebapplication.repository;
 
 import com.example.wishlistwebapplication.model.User;
 import com.example.wishlistwebapplication.model.Wish;

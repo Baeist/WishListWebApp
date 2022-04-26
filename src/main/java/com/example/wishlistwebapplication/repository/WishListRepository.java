@@ -1,5 +1,6 @@
 package com.example.wishlistwebapplication.repository;
 
+import com.example.wishlistwebapplication.model.User;
 import com.example.wishlistwebapplication.model.Wish;
 import com.example.wishlistwebapplication.model.WishList;
 import com.example.wishlistwebapplication.utilities.ConnectionManager;
@@ -13,6 +14,8 @@ import java.util.List;
 
 @Repository
 public class WishListRepository {
+
+  UserRepository up = new UserRepository();
 
   public List<WishList> findUserWishlist(String username) {
     try {
@@ -56,16 +59,20 @@ public class WishListRepository {
     }
     return null;
   }
-  //TODO wishlist mangler navn og derfra metde til at finde userID fra navnet herunder
+
   public void insertNewWishlistFromUser(String username, String name, String description){
     try{
       var connection = ConnectionManager.getConnection();
-      int userID = 1; // mangler metode til at finde id fra username
 
-      String sqlQuery = "INSERT INTO wishlists(wishlistID, userID, description) VALUES (null, ?, ?)";
+      User user = up.haveUserNameGetUserInfo(username);
+
+      int userID = user.getUserID();
+
+      String sqlQuery = "INSERT INTO wishlists(wishlistID, userID, list_name, description) VALUES (null, ?, ?, ?)";
       PreparedStatement ps = connection.prepareStatement(sqlQuery);
       ps.setInt(1, userID);
-      ps.setString(2, description);
+      ps.setString(2, name);
+      ps.setString(3, description);
       ps.executeUpdate();
     }
     catch(Exception e){

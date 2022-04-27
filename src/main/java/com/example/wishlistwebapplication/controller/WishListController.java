@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
@@ -100,7 +99,6 @@ public class WishListController {
         list.add(five);
         list.add(six);
         list.add(seven);
-        //list.add(eight);
 
         return list;
     }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,17 +19,23 @@ public class WishListRepository {
   UserRepository up = new UserRepository();
 
   public List<WishList> findUserWishlist(String username) {
+
+    int userID = getUserIDFromUsername(username);
+
     try {
       Connection connection = ConnectionManager.getConnection();
-      final String SQL_QUERY = "SELECT wishlist_id, wishlist_name, wishlist_description FROM wishlist WHERE username = ? ORDER BY wishlist_id";
+
+      final String SQL_QUERY =  "SELECT wishlistID, list_name, description " +
+                                "FROM wishlists WHERE userID = ? ORDER BY wishlistID";
       PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
-      ps.setString(1, username);
+      ps.setInt(1, userID);
       List<WishList> listOfWishlists = new ArrayList<>();
       ResultSet resultSet = ps.executeQuery();
+
       while (resultSet.next()) {
-        int wishlist_id = resultSet.getInt("wishlist_id");
-        String wishlist_name = resultSet.getString("wishlist_name");
-        String wishlist_description = resultSet.getString("wishlist_description");
+        int wishlist_id = resultSet.getInt("wishlistID");
+        String wishlist_name = resultSet.getString("list_name");
+        String wishlist_description = resultSet.getString("description");
         listOfWishlists.add(new WishList(wishlist_id, wishlist_name, wishlist_description));
       }
       return listOfWishlists;
@@ -80,6 +87,33 @@ public class WishListRepository {
     }
 
   }
+
+  public int getUserIDFromUsername(String username){
+    // if it returns -5 it failed
+    int userID = -5;
+
+    try {
+      var connection = ConnectionManager.getConnection();
+      final String SQL_QUERY =  "SELECT wishlists.userID " +
+                                "FROM users INNER JOIN wishlists " +
+                                "ON users.username = ?;";
+
+      PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+      ps.setString(1, username);
+
+      ResultSet resultSet = ps.executeQuery();
+      while (resultSet.next()) {
+        userID = resultSet.getInt(1);
+      }
+
+    } catch (SQLException e){
+      e.printStackTrace();
+    }
+
+    return userID;
+  }
+
+
 
   /*
   public WishListRepository() {

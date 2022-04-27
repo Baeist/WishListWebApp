@@ -2,7 +2,6 @@ package com.example.wishlistwebapplication.controller;
 
 import com.example.wishlistwebapplication.model.Wish;
 import com.example.wishlistwebapplication.model.WishList;
-import com.example.wishlistwebapplication.service.UserService;
 import com.example.wishlistwebapplication.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
@@ -101,7 +99,6 @@ public class WishListController {
         list.add(five);
         list.add(six);
         list.add(seven);
-        //list.add(eight);
 
         return list;
     }

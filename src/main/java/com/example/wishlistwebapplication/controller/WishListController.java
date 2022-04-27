@@ -30,7 +30,7 @@ public class WishListController {
     public String showAllWishlist(@PathVariable("username") String username, Model model) {
         // Arraylist<Wishlist> wishlist = wishListService.getWishlist(userID);
         model.addAttribute("username", username);
-        model.addAttribute("wishlist", testWish());
+        model.addAttribute("wishlist", wishListService.findUserWishlist(username));
         return "all_users_wishlist";
     }
 

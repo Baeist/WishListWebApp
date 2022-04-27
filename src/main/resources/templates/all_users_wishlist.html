@@ -24,11 +24,31 @@
         <th:block th:each="wishlist : ${wishlist}">
             <div class="col" style="margin-bottom: 1.5em">
                 <div class="card text-md-start" style="width: 18rem;">
-                    <div class="card-body">
+                    <div class="card-body" >
                         <h5 class="card-title">[[${wishlist.wishlist_name}]]</h5>
                         <p style="height: 8rem" class="card-text">[[${wishlist.description}]]</p>
-                        <a th:href="@{'/wishlist/' + ${username} + '/' + ${wishlist.wishlist_ID}}"
-                           class="card-link">Se ønskeliste</a> <!-- Not an Error. Intellij being wierd  -->
+
+                            <a th:href="@{'/wishlist/' + ${username} + '/' + ${wishlist.wishlist_ID}}"
+                               class="card-link">Se ønskeliste</a> <!-- Not an Error. Intellij being wierd  -->
+
+                            <button type="submit" th:onclick="copyToClipboard([[@{${wishlist.wishlist_ID}}]], [[@{${wishlist.wishlist_name}}]])" class="btn btn-sm btn-primary">kopier link</button>
+
+                        <script>
+                            function copyToClipboard(text, wishlistName) {
+                                var inputc = document.body.appendChild(document.createElement("input"));
+
+
+                                inputc.value = window.location.href + text;
+                                inputc.focus();
+                                inputc.select();
+                                document.execCommand('copy');
+                                inputc.parentNode.removeChild(inputc);
+
+                                alert("Link til "  + wishlistName + " kopieret, send det til dem du holder kær");
+                            }
+                        </script>
+
+
                     </div>
                 </div>
             </div>
@@ -43,7 +63,7 @@
                         <input name="name" type="text" class="form-control" required placeholder="Ønskeliste navn">
                     </div>
 
-                    <div class="col-lg-auto" style="height: 6.3rem">
+                    <div class="col-lg-auto" style="height: 6.5rem">
                         <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"
                                   style="resize: none" maxlength="160" minlength="0" placeholder="Beskrivelse">
                         </textarea>

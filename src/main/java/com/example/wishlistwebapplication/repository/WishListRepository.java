@@ -48,11 +48,12 @@ public class WishListRepository {
   public List<Wish> findWishlistWishes(int wishlist_id) {
     try {
       var connection = ConnectionManager.getConnection();
-      final String SQL_QUERY = "SELECT * FROM wishes WHERE wishlist_id = ?";
+      final String SQL_QUERY = "SELECT * FROM wishes WHERE wishlistID = ?";
       PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
       ps.setInt(1, wishlist_id);
       List<Wish> listOfWishes = new ArrayList<>();
       ResultSet resultSet = ps.executeQuery();
+
       while (resultSet.next()) {
         String itemName = resultSet.getString("item_name");
         double price = resultSet.getInt("price_dkk");
@@ -60,7 +61,9 @@ public class WishListRepository {
         String description = resultSet.getString("description");
         listOfWishes.add(new Wish(itemName, price, url, description));
       }
+
       return listOfWishes;
+
     } catch (Exception e) {
       e.printStackTrace();
     }

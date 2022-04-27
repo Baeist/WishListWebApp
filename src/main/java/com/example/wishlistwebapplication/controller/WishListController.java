@@ -48,9 +48,9 @@ public class WishListController {
     @GetMapping("/wishlist/{username}/{id}")
     public String showWishlist(@PathVariable("username") String username, @PathVariable("id") int wishlistID,
                                Model model) {
-        // needs a service method to gain the wishlist from a username and wishlistID
+
         model.addAttribute("username", username);
-        model.addAttribute("wishes", testWishDisplay());
+        model.addAttribute("wishes", wishListService.findWishlistWishes(wishlistID));
         return "wishlist";
     }
         @GetMapping("/wishlist")

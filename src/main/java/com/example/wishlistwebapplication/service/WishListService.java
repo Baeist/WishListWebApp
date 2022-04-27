@@ -18,9 +18,12 @@ public class WishListService {
   public List<WishList> findUserWishlist(String username) {
     return wishListRepository.findUserWishlist(username);
   }
+
   public List<Wish> findWishlistWishes (int wishlist_id) {
     return wishListRepository.findWishlistWishes(wishlist_id);
   }
+
+
   public void insertNewWishlistFromUser(String username, String name, String description){
     wishListRepository.insertNewWishlistFromUser(username, name, description);
   }

@@ -66,6 +66,8 @@ public class WishListController {
                                  @RequestParam("url") String url, @RequestParam("price") double price,
                                  @RequestParam("description") String description, HttpSession session){
 
+        wishListService.insertNewWishIntoAList(wishName, url, price, description);
+
         return "redirect:/wishlist/" + session.getAttribute("username"); // skal returnere til den rigtige ønskeliste ikek den generelle
         }
 

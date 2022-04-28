@@ -116,6 +116,28 @@ public class WishListRepository {
     return userID;
   }
 
+  public void insertNewWishIntoAList(String wishName, String url, double price, String description){
+    try{
+      var connection = ConnectionManager.getConnection();
+
+
+      int wishlistID = 1;
+
+
+      String sqlQuery = "INSERT INTO wishes(wishID, wishlistID, item_name, price_dkk, url, description) VALUES (null, ?, ?, ?, ?, ?)";
+      PreparedStatement ps = connection.prepareStatement(sqlQuery);
+      ps.setInt(1, wishlistID);
+      ps.setString(2, wishName);
+      ps.setDouble(3, price);
+      ps.setString(4, url);
+      ps.setString(5, description);
+      ps.executeUpdate();
+    }
+    catch(Exception e){
+      System.out.println("Failed to insert new wish " + e);
+    }
+
+  }
 
 
   /*

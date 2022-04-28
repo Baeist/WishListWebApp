@@ -20,8 +20,8 @@ public class WishListRepository {
 
   public List<WishList> findUserWishlist(String username) {
 
-    int userID = getUserIDFromUsername(username);
-
+    User user = up.haveUserNameGetUserInfo(username);
+    int userID = user.getUserID();
     try {
       Connection connection = ConnectionManager.getConnection();
 
@@ -38,6 +38,7 @@ public class WishListRepository {
         String wishlist_description = resultSet.getString("description");
         listOfWishlists.add(new WishList(wishlist_id, wishlist_name, wishlist_description));
       }
+
       return listOfWishlists;
     } catch (Exception e) {
       e.printStackTrace();
@@ -77,6 +78,7 @@ public class WishListRepository {
       User user = up.haveUserNameGetUserInfo(username);
 
       int userID = user.getUserID();
+      System.out.println(userID);
 
       String sqlQuery = "INSERT INTO wishlists(wishlistID, userID, list_name, description) VALUES (null, ?, ?, ?)";
       PreparedStatement ps = connection.prepareStatement(sqlQuery);
@@ -91,6 +93,32 @@ public class WishListRepository {
 
   }
 
+  public int getUserIDFromUsername(String username){
+    // if it returns -5 it failed
+    int userID = -5;
+
+    try {
+      var connection = ConnectionManager.getConnection();
+      final String SQL_QUERY =  "SELECT wishlists.userID " +
+              "FROM users INNER JOIN wishlists " +
+              "ON users.username = ?;";
+
+      PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+      ps.setString(1, username);
+
+      ResultSet resultSet = ps.executeQuery();
+      while (resultSet.next()) {
+        userID = resultSet.getInt(1);
+      }
+
+    } catch (SQLException e){
+      e.printStackTrace();
+    }
+
+    return userID;
+  }
+
+  /* TODO den her metode gør ikke hvad den hedder!? Returnere altid 2, hvorfor er der inner join til at finde userID fra username?
   public int getUserIDFromUsername(String username){
     // if it returns -5 it failed
     int userID = -5;
@@ -114,7 +142,7 @@ public class WishListRepository {
     }
 
     return userID;
-  }
+  }*/
 
   public void insertNewWishIntoAList(String wishName, String url, double price, String description){
     try{

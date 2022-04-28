@@ -35,11 +35,12 @@ public class UserRepository {
       ps.setString(1, username);
       ResultSet rs = ps.executeQuery();
 
-      while(rs.next()) {
+      if(rs.next()) {
         int userID = rs.getInt(1);
         username = rs.getString(2);
         String password = rs.getString(3);
         User user = new User(userID, username, password);
+        System.out.println(userID + username + password);
         return user;
       }
     } catch (Exception e) {

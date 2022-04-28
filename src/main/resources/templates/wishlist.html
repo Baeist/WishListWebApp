@@ -13,19 +13,13 @@
     Header will be placed here
 </header>
 
-<!--
-    private String itemName;
-    private double price;
-    private String url;
-    private String description;
--->
-
 <div style="margin: 6rem" class="container container-fluid>>">
     <h1 style="margin-top: 18px">[[${username}]] ønskelister:</h1>
     <!-- Content -->
     <div class="row row-cols-auto justify-content-start">
+
         <!-- Displays Wishlist -->
-        <th:block th:each="Wish : ${wishes}">
+        <th:block th:each="wishlist : ${wishlist}">
             <div class="col" style="margin-bottom: 1.5em">
                 <div class="card text-md-start" style="width: 18rem; height: 15rem">
                     <div class="card-body">
@@ -49,21 +43,14 @@
                     <p style="height: 7rem" class="card-text">Tryk på knappen for at oprette et ønske til din ønskeliste</p>
 
                     <button type="submit" style="margin-bottom: 2rem" class="btn btn-primary card-link">Opret Ønske til listen</button>
-
-
                 </div>
             </div>
         </div>
 
-
+    </div>
 
 
 </div>
-
-
-
-
-
 <!-- Spacing for the footer -->
 <div style="height: 150px">
 </div>
@@ -71,6 +58,7 @@
 <footer th:replace="fragments/footers :: footer-normal">
     Footer will be placed here
 </footer>
+
 </body>
 
 

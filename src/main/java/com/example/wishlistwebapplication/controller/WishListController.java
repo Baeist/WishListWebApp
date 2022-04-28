@@ -56,6 +56,18 @@ public class WishListController {
             return "findUser";
         }
 
+        @GetMapping("/makewish")
+        public String makeWish(){
+        return "makewish";
+        }
+
+        @PostMapping("/makewish")
+        public String createWish(@RequestParam("wishname") String wishName,
+                                 @RequestParam("url") String url, @RequestParam("price") double price,
+                                 @RequestParam("description") String description, HttpSession session){
+
+        return "redirect:/wishlist/" + session.getAttribute("username"); // skal returnere til den rigtige ønskeliste ikek den generelle
+        }
 
 
     //todo skal slettes:når vi for databasen op at kører

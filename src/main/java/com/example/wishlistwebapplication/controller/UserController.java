@@ -70,4 +70,17 @@ public class UserController {
   public String findUser() {
     return "findUser";
   }
+
+  @PostMapping("/findUser")
+  public String searchForUser(@RequestParam("user_name") String username){
+
+    User user = userService.haveUsernameWantPassword(username);
+
+    if(user != null) {
+
+    return "redirect:/wishlist/" + username;
+    }
+
+    return "findUser";
+  }
 }

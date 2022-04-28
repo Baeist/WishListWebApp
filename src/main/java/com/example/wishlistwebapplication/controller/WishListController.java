@@ -25,18 +25,21 @@ public class WishListController {
     }
 
     @GetMapping("/wishlist/{username}")
-    public String showAllWishlist(@PathVariable("username") String username, Model model) {
+    public String showAllWishlist(@PathVariable("username") String username, Model model, HttpSession session) {
         // Arraylist<Wishlist> wishlist = wishListService.getWishlist(userID);
+
+        model.addAttribute("isLoggedIn", session.getAttribute("isLoggedIn"));
         model.addAttribute("username", username);
         model.addAttribute("wishlist", wishListService.findUserWishlist(username));
         return "all_users_wishlist";
     }
 
     @PostMapping("/wishlist/{username}")
-    public String createWishlist(
-                                 @RequestParam("name") String name,
-                                 @RequestParam("description") String description,
-                                 HttpSession session) {
+    public String createWishlist(   @RequestParam("name") String name,
+                                    @RequestParam("description") String description,
+                                    HttpSession session) {
+
+
         String username = (String)session.getAttribute("username");
         wishListService.insertNewWishlistFromUser(username, name, description);
 

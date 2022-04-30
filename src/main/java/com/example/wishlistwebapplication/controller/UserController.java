@@ -46,6 +46,12 @@ public class UserController {
     return "login";
   }
 
+  @GetMapping("/logOut")
+  public String logOut(HttpSession session){
+    session.setAttribute("isLoggedIn", false);
+    return "redirect:/";
+  }
+
   @PostMapping("/login")
   public String succesfulLogIn(@RequestParam("username") String username,
                                @RequestParam("password") String password, Model model, HttpSession session){

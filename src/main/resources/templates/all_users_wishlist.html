@@ -12,9 +12,11 @@
 
 
 <body>
-<header th:replace="fragments/headers :: header-normal">
-    Header will be placed here
-</header>
+
+    <header   th:replace="fragments/headers :: header-normal">
+        Header will be placed here
+    </header>
+
 
 <div style="margin: 6rem" class="container container-fluid>>">
     <h1 style="margin-top: 18px">[[${username}]] ønskelister:</h1>
@@ -38,7 +40,7 @@
                                 var inputc = document.body.appendChild(document.createElement("input"));
 
 
-                                inputc.value = window.location.href + text;
+                                inputc.value = window.location.href + '/' +  text;
                                 inputc.focus();
                                 inputc.select();
                                 document.execCommand('copy');
@@ -64,7 +66,8 @@
                     </div>
 
                     <div class="col-lg-auto" style="height: 6.5rem">
-                        <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none" maxlength="160" minlength="0" placeholder="Beskrivelse"></textarea>
+                        <textarea name="description" class="form-control" id="exampleFormControlTextarea1"
+                                  rows="3" style="resize: none" maxlength="160" minlength="0" placeholder="Beskrivelse"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary m-1">Opret Ønskeliste</button>

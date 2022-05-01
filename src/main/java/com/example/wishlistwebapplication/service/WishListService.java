@@ -28,7 +28,7 @@ public class WishListService {
     wishListRepository.insertNewWishlistFromUser(username, name, description);
   }
 
-  public void insertNewWishIntoAList(String wishName, String url, double price, String description){
-    wishListRepository.insertNewWishIntoAList(wishName, url, price, description);
+  public void insertNewWishIntoAList(int wishlistID, String wishName, String url, double price, String description){
+    wishListRepository.insertNewWishIntoAList(wishlistID, wishName, url, price, description);
   }
 }

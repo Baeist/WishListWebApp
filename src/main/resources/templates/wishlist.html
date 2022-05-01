@@ -19,7 +19,7 @@
     <div class="row row-cols-auto justify-content-start">
 
         <!-- Displays Wishlist -->
-        <th:block th:each="wishlist : ${wishlist}">
+        <th:block th:each="Wish : ${wishes}">
             <div class="col" style="margin-bottom: 1.5em">
                 <div class="card text-md-start" style="width: 18rem; height: 15rem">
                     <div class="card-body">
@@ -27,22 +27,23 @@
                         <p  class="card-text">[[${Wish.price}]] dkk.</p>
                         <p style="height: 5rem" class="card-text">[[${Wish.description}]]</p>
 
-                        <button type="submit" style="margin-bottom: 2rem" class="btn btn-primary card-link">Opret Ønske til listen</button>
+
 
                     </div>
                 </div>
             </div>
         </th:block>
 
-        <!-- form for creating a wishlist -->
+        <!-- form for creating a wish -->
         <div class="col" style="margin-bottom: 1.5em">
             <div class="card text-md-start" style="width: 18rem; height: 15rem;">
                 <div class="card-body b">
                     <h5 class="card-title">Opret ønske</h5>
                     <p  class="card-text"></p>
                     <p style="height: 7rem" class="card-text">Tryk på knappen for at oprette et ønske til din ønskeliste</p>
-
-                    <button type="submit" style="margin-bottom: 2rem" class="btn btn-primary card-link">Opret Ønske til listen</button>
+                    <a href="/makewish">
+                    <button type="button" style="margin-bottom: 2rem" class="btn btn-primary card-link">Opret Ønske til listen</button>
+                    </a>
                 </div>
             </div>
         </div>

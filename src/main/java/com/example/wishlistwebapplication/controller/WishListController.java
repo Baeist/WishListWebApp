@@ -49,8 +49,8 @@ public class WishListController {
 
     @GetMapping("/wishlist/{username}/{id}")
     public String showWishlist(@PathVariable("username") String username, @PathVariable("id") int wishlistID,
-                               Model model) {
-
+                               Model model, HttpSession session) {
+        session.setAttribute("wishlistID", wishlistID);
         model.addAttribute("username", username);
         model.addAttribute("wishes", wishListService.findWishlistWishes(wishlistID));
         return "wishlist";
@@ -70,7 +70,7 @@ public class WishListController {
                                  @RequestParam("url") String url, @RequestParam("price") double price,
                                  @RequestParam("description") String description, HttpSession session){
 
-        wishListService.insertNewWishIntoAList(wishName, url, price, description);
+        wishListService.insertNewWishIntoAList((int)session.getAttribute("wishlistID"), wishName, url, price, description);
 
         return "redirect:/wishlist/" + session.getAttribute("username"); // skal returnere til den rigtige ønskeliste ikek den generelle
         }

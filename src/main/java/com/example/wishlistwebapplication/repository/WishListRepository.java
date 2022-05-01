@@ -144,12 +144,12 @@ public class WishListRepository {
     return userID;
   }*/
 
-  public void insertNewWishIntoAList(String wishName, String url, double price, String description){
+  public void insertNewWishIntoAList(int wishlistID, String wishName, String url, double price, String description){
     try{
       var connection = ConnectionManager.getConnection();
 
 
-      int wishlistID = 1;
+
 
 
       String sqlQuery = "INSERT INTO wishes(wishID, wishlistID, item_name, price_dkk, url, description) VALUES (null, ?, ?, ?, ?, ?)";
